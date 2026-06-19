@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>identio ATLAS</title>
+  <link rel="icon" type="image/svg+xml" href="identio_symbol.svg">
+  <meta name="description"
+    content="Identio(아이덴티오)는 통합 브랜드 아이덴티티(BI/BX)와 공간 디자인을 융합하여 프리미엄 공간 경험을 제시합니다. 우리가 걸어온 전국의 발자국을 확인해보세요.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;400;600;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="lib/leaflet.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-theme">
+
+  <div id="app">
+    <!-- 1. Background Interactive Map -->
+    <main id="map-container">
+      <div id="map"></div>
+    </main>
+
+    <!-- Logo Toggle Button (always visible, top-left) -->
+    <button id="sidebar-toggle" aria-label="사이드바 토글">
+      <svg class="logo-symbol" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_31_2)">
+          <path d="M255.979 0C114.635 0 0 114.635 0 255.979C0 397.322 114.635 511.957 255.979 511.957C397.322 511.957 511.957 397.322 511.957 255.979C511.957 114.635 397.365 0 255.979 0ZM278.571 416.185H233.386V190.301H278.571V416.185ZM255.979 150.175C239.345 150.175 225.841 136.671 225.841 120.037C225.841 103.403 239.345 89.899 255.979 89.899C272.612 89.899 286.116 103.403 286.116 120.037C286.116 136.671 272.612 150.175 255.979 150.175Z" fill="currentColor"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_31_2">
+            <rect width="512" height="512" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </button>
+
+    <!-- Theme Toggle Button (always visible, top-right) -->
+    <button id="theme-toggle" aria-label="테마 전환 토글">
+      <span class="toggle-slider"></span>
+    </button>
+
+    <!-- Center Top Title -->
+    <div id="atlas-title-container">
+      <div class="atlas-main-title"></div>
+    </div>
+
+    <!-- 2. Left Sidebar (Brand Profile & Stats) -->
+    <aside id="sidebar" class="glass-panel sidebar-hidden">
+      <header class="sidebar-header">
+        <div class="logo">
+          <svg class="logo-image" viewBox="0 0 955 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_31_4)">
+              <path d="M33.036 58.7486H3.16846V215.383H33.036V58.7486Z" fill="currentColor"/>
+              <path d="M200.455 56.7155V84.3743C194.118 72.0062 174.6 54.1317 142.747 54.1317C98.2207 54.1317 63.1992 88.1017 63.1992 136.769C63.1992 181.964 94.2074 220 143.339 220C175.488 220 193.019 204.159 201.637 188.021V215.383H230.364V2.28726H200.497V56.7155H200.455ZM186.978 175.653C177.22 185.734 163.152 192.045 147.944 192.045C113.471 192.045 93.3625 165.826 93.0667 137.023V136.727C93.0667 107.374 114.908 82.0023 147.944 82.0023C163.152 82.0023 176.67 87.7628 186.429 97.5472C196.188 107.035 202.229 120.589 202.229 136.134C202.82 151.679 197.075 165.487 187.021 175.568L186.978 175.653Z" fill="currentColor"/>
+              <path d="M341.512 54.1317C294.113 54.1317 259.091 92.422 259.091 137.362C259.091 178.829 290.691 220 341.808 220C357.608 220 373.112 215.68 386.335 206.742C399.557 198.102 410.457 185.141 417.934 167.859H386.926C378.308 184.251 362.804 194.374 341.85 194.374C318.319 194.374 290.733 178.236 289.297 146.554H422.835C425.412 120.335 417.681 95.8953 399.304 77.1737C384.391 62.4759 363.987 54.1317 341.597 54.1317H341.512ZM289.804 123.258C291.24 101.952 311.053 79.7574 341.512 79.7574C371.084 79.2068 391.784 102.503 393.221 123.258H289.846H289.804Z" fill="currentColor"/>
+              <path d="M533.053 54.1317C505.213 53.8352 487.681 66.7963 480.204 82.9341V58.7485H452.068V215.383H481.936V128.129C481.936 101.063 495.412 82.6377 524.73 82.3412C555.189 82.0447 566.089 102.206 566.089 130.416V215.341H596.252V123.469C596.252 90.9395 583.029 54.64 533.053 54.0893V54.1317Z" fill="currentColor"/>
+              <path d="M675.842 2.28726H645.975V58.7486H617.797V82.0447H645.975V215.383H675.842V82.0447H705.963V58.7486H675.842V2.28726Z" fill="currentColor"/>
+              <path d="M758.263 58.7486H728.396V215.383H758.263V58.7486Z" fill="currentColor"/>
+              <path d="M871.692 54.1317C819.139 54.1317 788.426 95.0058 788.426 136.769V137.066C788.426 179.126 819.139 219.704 871.692 219.704C924.245 219.704 954.958 179.084 954.958 137.066C954.958 95.0481 924.245 54.1317 871.692 54.1317ZM871.692 191.791C841.824 191.791 818.294 168.452 818.294 137.362V137.066C818.294 105.68 841.867 82.3412 871.692 82.3412C901.517 82.3412 925.09 105.68 925.09 137.066C925.09 168.452 901.559 191.791 871.692 191.791Z" fill="currentColor"/>
+              <path d="M18.081 0C8.11112 0 0 8.13246 0 18.1286C0 28.1248 8.11112 36.2572 18.081 36.2572C28.051 36.2572 36.1621 28.1248 36.1621 18.1286C36.1621 8.13246 28.0932 0 18.081 0Z" fill="currentColor"/>
+              <path d="M743.308 0C733.296 0 725.227 8.13246 725.227 18.1286C725.227 28.1248 733.338 36.2572 743.308 36.2572C753.278 36.2572 761.389 28.1248 761.389 18.1286C761.389 8.13246 753.278 0 743.308 0Z" fill="currentColor"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_31_4">
+                <rect width="955" height="220" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <p class="brand-subtitle">identity from the origin</p>
+      </header>
+ 
+      <section class="brand-intro">
+        <p class="intro-description">
+          identio 아이덴티오는 통합 브랜드 아이덴티티 디자인을 제공하는 브랜드 디자인 에이전시입니다. 브랜드가 원하는
+          목적지에 도달할 수 있도록 그 여정을 설계하고 함께 나아가며 브랜드의 성장을 돕습니다. 지도를 움직이며 우리가 남긴 궤적을 탐색해 보세요.
+        </p>
+      </section>
+ 
+      <!-- Stats -->
+      <section class="stats-container">
+        <div class="stat-item">
+          <span class="stat-num" id="stat-years">6+</span>
+          <span class="stat-label">Years Of Design</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-projects">55+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+      </section>
+ 
+      <!-- Project List in Sidebar -->
+      <section class="project-list-section">
+        <h3 class="section-title">PROJECT</h3>
+        <div class="project-list-wrapper" id="project-list">
+          <!-- JS로 동적 생성 -->
+        </div>
+      </section>
+ 
+      <footer class="sidebar-footer">
+        <p class="contact-info">+82 02 333 1118 | <a href="mailto:info@identio.kr">info@identio.kr</a> | <a href="https://identio.kr" target="_blank">identio.kr</a></p>
+        <p class="copyright">&copy; 2026 Identio. All rights reserved.</p>
+      </footer>
+    </aside>
+
+    <!-- 3. Bottom Timeline Navigation -->
+    <nav id="timeline-container" class="glass-panel sidebar-collapsed">
+      <button class="timeline-nav-btn" id="prev-year-btn" aria-label="이전 해">&larr;</button>
+      <div class="timeline-years" id="timeline-years">
+        <button class="year-btn active" data-year="all">ALL</button>
+        <button class="year-btn" data-year="2021">2021</button>
+        <button class="year-btn" data-year="2022">2022</button>
+        <button class="year-btn" data-year="2023">2023</button>
+        <button class="year-btn" data-year="2024">2024</button>
+        <button class="year-btn" data-year="2025">2025</button>
+        <button class="year-btn" data-year="2026">2026</button>
+      </div>
+      <button class="timeline-nav-btn" id="next-year-btn" aria-label="다음 해">&rarr;</button>
+    </nav>
+
+    <!-- Map Loading Overlay -->
+    <div id="intro-overlay" class="overlay-visible">
+      <div class="overlay-loader">
+        <div class="loader-circle-wrapper">
+          <svg class="loader-symbol-spin" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_31_2)">
+              <path d="M255.979 0C114.635 0 0 114.635 0 255.979C0 397.322 114.635 511.957 255.979 511.957C397.322 511.957 511.957 397.322 511.957 255.979C511.957 114.635 397.365 0 255.979 0ZM278.571 416.185H233.386V190.301H278.571V416.185ZM255.979 150.175C239.345 150.175 225.841 136.671 225.841 120.037C225.841 103.403 239.345 89.899 255.979 89.899C272.612 89.899 286.116 103.403 286.116 120.037C286.116 136.671 272.612 150.175 255.979 150.175Z" fill="currentColor"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_31_2">
+                <rect width="512" height="512" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div class="loader-logo-title">
+          <span class="loader-atlas-name">ATLAS</span>
+        </div>
+        <div class="loader-progress">지도에 발자국 남기는 중...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="lib/leaflet.js"></script>
+
+  <!-- Project Data & Application Logic -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
