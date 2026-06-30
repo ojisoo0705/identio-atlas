@@ -319,6 +319,10 @@ body.light-theme #sidebar-toggle svg {
   border-radius: 4px;
 }
 
+.sidebar-drag-handle {
+  display: none;
+}
+
 .sidebar-header {
   margin-top: 88px;
   margin-bottom: 40px;
@@ -952,20 +956,45 @@ body.light-theme .card-action-btn {
   }
 
   #sidebar {
-    position: relative;
-    top: auto;
-    left: auto;
-    bottom: auto;
-    width: 100%;
-    height: calc(38vh + 24px);
-    margin-top: -24px;
+    position: absolute !important;
+    top: auto !important;
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 80px !important;
+    width: calc(100% - 32px) !important;
+    height: 60px; /* 로고와 드래그 핸들만 보이도록 낮춤 */
+    margin-top: 0 !important;
     z-index: 1000;
-    border-radius: 24px 24px 0 0;
+    border-radius: 24px !important;
     border: 1px solid var(--border-color);
-    border-bottom: none;
-    padding: 20px 20px 88px 20px;
+    padding: 8px 20px 20px 20px;
     display: block !important;
     overflow-y: auto !important;
+    transition: height 0.4s var(--ease-curve);
+  }
+
+  #sidebar.expanded {
+    height: calc(38vh + 24px) !important;
+  }
+
+  .sidebar-drag-handle {
+    display: block !important;
+    width: 40px;
+    height: 4px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+    margin: 4px auto 12px auto;
+    opacity: 0.5;
+  }
+
+  #sidebar::-webkit-scrollbar {
+    width: 6px !important;
+    background: transparent !important;
+  }
+
+  #sidebar::-webkit-scrollbar-thumb {
+    background: rgba(201, 184, 231, 0.4) !important; /* 40% 투명도로 선명도 확보 */
+    border-radius: 3px !important;
   }
   
   #map-container {
@@ -1061,6 +1090,31 @@ body.light-theme .card-action-btn {
 
   .leaflet-control-attribution {
     display: none !important;
+  }
+
+  /* 캡슐배너 (Leaflet Popup Card) 모바일 스케일 다운 */
+  .custom-project-card {
+    width: 200px !important;
+    border-radius: 100px 100px 20px 20px !important;
+    padding: 10px !important;
+  }
+  .card-image-wrapper {
+    width: 140px !important;
+    height: 140px !important;
+    margin: 4px auto 10px auto !important;
+  }
+  .card-details {
+    margin-bottom: 12px !important;
+  }
+  .card-title .title-ko {
+    font-size: 14px !important;
+  }
+  .card-title .title-en {
+    font-size: 10px !important;
+  }
+  .card-action-btn {
+    padding: 8px 0 !important;
+    font-size: 11px !important;
   }
   
   /* Drawer styles removed */

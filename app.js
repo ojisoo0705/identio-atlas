@@ -134,10 +134,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const listItems = document.querySelectorAll(".sidebar-project-item");
     const sorted = getSortedFilteredProjects();
     const projIndex = sorted.findIndex(p => p.id === project.id);
+    // Expand sidebar on mobile when a project is selected
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) {
+      sidebar.classList.add("expanded");
+    }
+
     listItems.forEach((item, idx) => {
       if (idx === projIndex) {
         item.classList.add(activeItemClass);
-        item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        // Scroll active project to the top of the sidebar viewport
+        setTimeout(() => {
+          item.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100); // Wait for transition to start/finish
       } else {
         item.classList.remove(activeItemClass);
       }
@@ -251,6 +260,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // Clicking the "ALL" button closes the popup and resets the active project/title (both PC and Mobile)
       if (year === "all") {
         map.closePopup();
+
+        // Collapse sidebar on mobile
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar) {
+          sidebar.classList.remove("expanded");
+          sidebar.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
         if (activeProject) {
           const m = document.getElementById(`marker-${activeProject.id}`);
           if (m) m.classList.remove(activeMarkerClass);
@@ -447,6 +464,20 @@ document.addEventListener("DOMContentLoaded", () => {
     easterEggDot.addEventListener("click", (e) => {
       e.stopPropagation();
       window.open("https://identio-poster-editor.vercel.app/", "_blank");
+    });
+  }
+
+  // Mobile sidebar height transition on scroll
+  const sidebarEl = document.getElementById("sidebar");
+  if (sidebarEl) {
+    sidebarEl.addEventListener("scroll", () => {
+      if (window.innerWidth <= 768) {
+        if (sidebarEl.scrollTop > 10) {
+          sidebarEl.classList.add("expanded");
+        } else if (sidebarEl.scrollTop === 0) {
+          sidebarEl.classList.remove("expanded");
+        }
+      }
     });
   }
 
