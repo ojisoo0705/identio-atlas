@@ -69,7 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.add("overlay-hidden");
       setTimeout(() => {
         map.flyTo(koreaCenter, koreaZoom, { duration: 3.2, easeLinearity: 0.15 });
-        map.once("moveend", () => { renderPortfolio(); animateStats(); });
+        // 지도가 날아가기 시작하는 동시에 카운팅 애니메이션 실행
+        animateStats();
+        map.once("moveend", () => { renderPortfolio(); });
       }, 400);
     }, 3000); // 부드러운 애니메이션과 로딩 감상을 위해 대기 시간을 3.0초로 연장
   }
@@ -312,8 +314,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function animateStats() {
     const yearsStat = document.getElementById("stat-years");
     const projStat = document.getElementById("stat-projects");
-    animateCounter(yearsStat, 1, 6, 1000, "+");
-    animateCounter(projStat, 1, 55, 1500, "+");
+    animateCounter(yearsStat, 0, 6, 1000, "+"); // 0부터 카운팅 시작
+    animateCounter(projStat, 0, 55, 1500, "+"); // 0부터 카운팅 시작
   }
 
   function animateCounter(el, start, end, dur, suffix = "") {
