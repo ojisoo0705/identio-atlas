@@ -1014,12 +1014,12 @@ body.light-theme .card-action-btn {
   }
 
   .sidebar-header {
-    margin-top: 8px !important;
-    margin-bottom: 12px !important; /* 세로 공간 최적화를 위해 마진 대폭 축소 */
+    margin-top: 4px !important; /* 10px -> 4px 로 축소 */
+    margin-bottom: 8px !important; /* 12px -> 8px 로 축소 */
   }
 
   .logo-image {
-    width: clamp(80px, 15vh, 100px) !important; /* 모바일 반응형 로고 가로 크기 조절 */
+    width: clamp(75px, 12vh, 90px) !important; /* 모바일 반응형 로고 크기 추가 축소 */
   }
 
   .brand-subtitle {
@@ -1031,18 +1031,18 @@ body.light-theme .card-action-btn {
   }
 
   .stats-container {
-    margin-bottom: 8px !important; /* 여백 대폭 축소 */
-    padding: 0 0 4px 0 !important;
+    margin-bottom: 4px !important; /* 8px -> 4px 로 축소 */
+    padding: 0 0 2px 0 !important;
     gap: 8px !important;
   }
 
   .stat-num {
-    font-size: clamp(20px, 3.8vh, 26px) !important; /* 반응형 폰트 축소 */
+    font-size: clamp(18px, 3.2vh, 23px) !important; /* 20px~26px -> 18px~23px 로 축소 */
   }
 
   .stat-label {
-    font-size: clamp(8px, 1.2vh, 10px) !important; /* 반응형 라벨 폰트 축소 */
-    letter-spacing: 0px !important;
+    font-size: clamp(7px, 1vh, 8.5px) !important; /* 라벨 폰트 크기 추가 축소 */
+    letter-spacing: -0.1px !important;
     white-space: nowrap !important;
   }
 
