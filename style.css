@@ -992,8 +992,14 @@ body.light-theme .card-action-btn {
     background: transparent !important;
   }
 
+  #sidebar::-webkit-scrollbar-track {
+    background: transparent !important;
+    margin-top: 16px !important; /* 스크롤바가 상단 라운드 영역 바깥으로 튀어나오지 않도록 보정 */
+    margin-bottom: 16px !important;
+  }
+
   #sidebar::-webkit-scrollbar-thumb {
-    background: rgba(201, 184, 231, 0.4) !important; /* 40% 투명도로 선명도 확보 */
+    background: rgba(201, 184, 231, 0.7) !important; /* 70% 투명도로 선명하게 보임 */
     border-radius: 3px !important;
   }
   
