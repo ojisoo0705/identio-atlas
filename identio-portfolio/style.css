@@ -1140,6 +1140,31 @@ body.light-theme .card-action-btn {
   }
   
   /* Drawer styles removed */
+  
+  /* 세로 높이가 극단적으로 짧은 기기(예: iPhone SE)를 위한 추가 초슬림 반응형 오버라이드 */
+  @media (max-height: 680px) {
+    #sidebar::before {
+      height: 12px !important; /* 상단 스크롤 가드 축소 */
+    }
+    .sidebar-header {
+      margin-top: 2px !important;
+      margin-bottom: 6px !important;
+    }
+    .logo-image {
+      width: 70px !important; /* 로고 추가 축소 */
+    }
+    .stats-container {
+      margin-bottom: 2px !important;
+      padding: 0 0 2px 0 !important;
+      gap: 6px !important;
+    }
+    .stat-num {
+      font-size: 16px !important; /* 통계 숫자 축소 */
+    }
+    .stat-label {
+      font-size: 8px !important; /* 통계 라벨 축소 */
+    }
+  }
 }
 
 /* 6. Theme Toggle Widget */
