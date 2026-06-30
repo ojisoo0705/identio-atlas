@@ -9,13 +9,13 @@
 
 /* Custom CSS Variable Design System */
 :root {
-  --bg-color: #0b0c10;
+  --bg-color: #0d0d10;
   --text-main: #f5f5f7;
   --text-muted: #9e9e9e;
   --accent-gold: #C9B8E7;
   --accent-gold-rgb: 201, 184, 231;
   --accent-gold-hover: #B3A0D4;
-  --panel-bg: rgba(15, 17, 23, 0.75);
+  --panel-bg: rgba(13, 13, 16, 0.75);
   --border-color: rgba(255, 255, 255, 0.08);
   --shadow-color: rgba(0, 0, 0, 0.6);
   --card-bg: rgba(255, 255, 255, 0.03);
@@ -91,7 +91,7 @@ body, html {
 #map {
   width: 100%;
   height: 100%;
-  background-color: #0b0c10; /* Match dark theme */
+  background-color: #0d0d10; /* Match dark theme */
 }
 
 /* Logo Toggle Button */
@@ -224,15 +224,31 @@ body.light-theme #sidebar-toggle svg {
 }
 
 /* Leaflet Zoom control styling */
+.leaflet-top.leaflet-right {
+  top: 24px !important;
+  right: 24px !important;
+}
+
+.leaflet-right .leaflet-control {
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+}
+
 .leaflet-bar {
+  width: 30px !important;
+  height: 52px !important;
   border: 1px solid rgba(201, 184, 231, 0.5) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
   background: var(--panel-bg) !important;
-  border-radius: 14px !important; /* 토글 스위치와 동일한 r값 */
+  border-radius: 15px !important; /* 토글 스위치와 동일한 r값 */
   overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .leaflet-bar a {
+  width: 28px !important;
+  height: 25px !important;
   background: transparent !important;
   color: var(--text-main) !important;
   border-bottom: none !important;
@@ -240,12 +256,16 @@ body.light-theme #sidebar-toggle svg {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
   line-height: 1 !important;
 }
 
 .leaflet-bar a:hover {
   background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.leaflet-control-zoom-out {
+  padding-bottom: 3px !important; /* 마이너스 기호가 폰트 베이스라인으로 인해 처져 보이는 현상을 위로 보정 */
 }
 
 /* Hide leaflet attribution to keep UI super clean (Optional, legal to do with OSM if cited in code footer) */
@@ -300,7 +320,7 @@ body.light-theme #sidebar-toggle svg {
 }
 
 .sidebar-header {
-  margin-top: 100px;
+  margin-top: 88px;
   margin-bottom: 40px;
 }
 
@@ -315,6 +335,11 @@ body.light-theme #sidebar-toggle svg {
   display: block;
   color: #ffffff; /* 다크모드 기본: 백색 로고 */
   transition: color var(--transition-speed) var(--ease-curve);
+}
+
+.easter-egg-dot {
+  cursor: pointer;
+  pointer-events: auto !important;
 }
 
 body.light-theme .logo-image {
@@ -335,7 +360,7 @@ body.light-theme .brand-subtitle {
 }
 
 .brand-intro {
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 
 .intro-title {
@@ -368,9 +393,8 @@ body.light-theme .intro-description {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 35px;
-  border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  padding: 20px 0;
+  padding: 0 0 20px 0;
 }
 
 .stat-item {
@@ -599,7 +623,7 @@ body.light-theme .copyright {
 
 .year-btn.active {
   background: var(--accent-gold);
-  color: #0b0c10;
+  color: #0d0d10;
   border-color: var(--accent-gold);
   box-shadow: 0 0 15px rgba(var(--accent-gold-rgb), 0.5);
 }
@@ -759,7 +783,7 @@ body.light-theme .card-image-placeholder {
   cursor: pointer;
   border: none;
   background: var(--accent-gold);
-  color: #0b0c10;
+  color: #0d0d10;
   box-shadow: 0 4px 12px rgba(var(--accent-gold-rgb), 0.3);
   transition: all 0.3s var(--ease-curve);
 }
@@ -917,30 +941,126 @@ body.light-theme .card-action-btn {
     flex-direction: column;
   }
   
+  #sidebar-toggle {
+    display: none !important;
+  }
+
+  #sidebar.sidebar-hidden {
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
   #sidebar {
     position: relative;
     top: auto;
     left: auto;
     bottom: auto;
     width: 100%;
-    height: 35vh;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
+    height: calc(38vh + 24px);
+    margin-top: -24px;
+    z-index: 1000;
+    border-radius: 24px 24px 0 0;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    padding: 20px 20px 88px 20px;
+    display: block !important;
+    overflow-y: auto !important;
   }
   
   #map-container {
     position: relative;
-    height: 65vh;
+    height: 62vh;
+  }
+
+  .sidebar-header {
+    margin-top: 20px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .brand-subtitle {
+    display: none !important;
+  }
+
+  .brand-intro {
+    display: none !important;
+  }
+
+  .stats-container {
+    margin-bottom: 16px !important;
+    padding: 0 0 12px 0 !important;
+    gap: 12px !important;
+  }
+
+  .stat-num {
+    font-size: 36px !important;
+  }
+
+  .project-list-section {
+    display: block !important;
+    flex-grow: 0 !important;
+    min-height: auto !important;
+  }
+
+  .project-list-wrapper {
+    display: block !important;
+    overflow-y: visible !important;
+    flex-grow: 0 !important;
+  }
+
+  .sidebar-project-item {
+    padding: 10px !important;
+    margin-bottom: 8px !important;
   }
   
   #timeline-container {
     position: fixed;
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
-    width: calc(100% - 24px);
+    bottom: 0;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 72px;
+    border-radius: 24px 24px 0 0;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
     z-index: 1001;
+    padding: 0 16px;
+  }
+
+  #prev-year-btn,
+  #next-year-btn {
+    display: none;
+  }
+
+  .timeline-years {
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .timeline-years::before {
+    display: none !important;
+  }
+
+  .year-btn {
+    padding: 8px 0;
+    font-size: 11px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .loader-atlas-name {
+    font-size: 48px !important;
+    letter-spacing: 6px !important;
+    text-indent: 6px !important;
+  }
+
+  .leaflet-control-attribution {
+    display: none !important;
   }
   
   /* Drawer styles removed */
@@ -949,16 +1069,16 @@ body.light-theme .card-action-btn {
 /* 6. Theme Toggle Widget */
 #theme-toggle {
   position: absolute;
-  top: 92px;
-  right: 12px;
-  width: 28px;
-  height: 50px;
-  border-radius: 14px;
+  top: 88px;
+  right: 24px;
+  width: 30px;
+  height: 52px;
+  border-radius: 15px;
   border: 1px solid rgba(201, 184, 231, 0.5); /* 다크모드 기본 테두리 */
-  background: rgba(15, 17, 23, 0.95);
+  background: rgba(13, 13, 16, 0.95);
   cursor: pointer;
   z-index: 1100;
-  padding: 3px;
+  padding: 2px;
   box-shadow: 0 4px 12px var(--shadow-color);
   transition: background 0.3s var(--ease-curve);
   display: flex;
@@ -972,8 +1092,8 @@ body.light-theme .card-action-btn {
 }
 
 .toggle-slider {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -1001,7 +1121,7 @@ body.light-theme .leaflet-bar {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: none !important;
-  border-radius: 14px !important;
+  border-radius: 15px !important;
   overflow: hidden !important;
   box-shadow: 0 4px 12px var(--shadow-color) !important;
 }

@@ -152,11 +152,37 @@ document.addEventListener("DOMContentLoaded", () => {
         .split("")
         .map(char => {
           if (char === " ") {
-            return `<span style="margin: 0 16px;">&nbsp;</span>`;
+            const spaceMargin = window.innerWidth <= 768 ? "0 6px" : "0 16px";
+            return `<span style="margin: ${spaceMargin};">&nbsp;</span>`;
           }
           return `<span>${char}</span>`;
         })
         .join("");
+
+      // Adjust size based on text length to fit within mobile screen bounds
+      if (window.innerWidth <= 768) {
+        const len = project.englishTitle.length;
+        let fontSize = 40;
+        let letterMargin = "0 2px";
+        if (len > 25) {
+          fontSize = 18;
+          letterMargin = "0 1px";
+        } else if (len > 20) {
+          fontSize = 22;
+          letterMargin = "0 1px";
+        } else if (len > 15) {
+          fontSize = 26;
+          letterMargin = "0 1px";
+        } else if (len > 10) {
+          fontSize = 32;
+        }
+        titleContainer.style.fontSize = fontSize + "px";
+        titleContainer.querySelectorAll("span:not([style*='margin'])").forEach(s => {
+          s.style.margin = letterMargin;
+        });
+      } else {
+        titleContainer.style.fontSize = ""; // Reset to CSS default for desktop
+      }
     }
 
     isSelectingProject = false;
@@ -221,6 +247,23 @@ document.addEventListener("DOMContentLoaded", () => {
   yearButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const year = button.getAttribute("data-year");
+
+      // Clicking the "ALL" button closes the popup and resets the active project/title (both PC and Mobile)
+      if (year === "all") {
+        map.closePopup();
+        if (activeProject) {
+          const m = document.getElementById(`marker-${activeProject.id}`);
+          if (m) m.classList.remove(activeMarkerClass);
+          document.querySelectorAll(".sidebar-project-item").forEach(i => i.classList.remove(activeItemClass));
+          activeProject = null;
+          
+          const titleContainer = document.querySelector("#atlas-title-container .atlas-main-title");
+          if (titleContainer) {
+            titleContainer.innerHTML = "";
+          }
+        }
+      }
+
       if (activeYear === year) {
         // 이미 active된 상태에서 다시 누르면 지도의 뷰를 초기화/재배치 (all인 경우 한반도 전체 뷰 복귀)
         fitMapToActiveMarkers();
@@ -397,6 +440,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Easter egg redirect for first i's dot in the logo
+  const easterEggDot = document.querySelector(".easter-egg-dot");
+  if (easterEggDot) {
+    easterEggDot.addEventListener("click", (e) => {
+      e.stopPropagation();
+      window.open("https://identio-poster-editor.vercel.app/", "_blank");
+    });
+  }
 
   startIntroAnimation();
 });
