@@ -236,7 +236,7 @@ body.light-theme #sidebar-toggle svg {
 
 .leaflet-bar {
   width: 30px !important;
-  height: 52px !important;
+  height: 57px !important; /* 5px 세로 길이 의도적 증가 */
   border: 1px solid rgba(201, 184, 231, 0.5) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
   background: var(--panel-bg) !important;
@@ -248,7 +248,7 @@ body.light-theme #sidebar-toggle svg {
 
 .leaflet-bar a {
   width: 28px !important;
-  height: 25px !important;
+  height: 27.5px !important; /* 25px -> 27.5px 로 높임 */
   background: transparent !important;
   color: var(--text-main) !important;
   border-bottom: none !important;
@@ -958,23 +958,24 @@ body.light-theme .card-action-btn {
   #sidebar {
     position: absolute !important;
     top: auto !important;
-    left: 16px !important;
-    right: 16px !important;
-    bottom: 80px !important;
-    width: calc(100% - 32px) !important;
-    height: 60px; /* 로고와 드래그 핸들만 보이도록 낮춤 */
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 130px; /* 로고와 드래그 핸들이 타임라인(72px) 위로 노출되도록 접힘 상태 높이 보정 */
     margin-top: 0 !important;
     z-index: 1000;
-    border-radius: 24px !important;
+    border-radius: 24px 24px 0 0 !important; /* 하단 밀착을 위해 아래쪽 r값 제거 */
     border: 1px solid var(--border-color);
-    padding: 8px 20px 20px 20px;
+    border-bottom: none !important; /* 바닥 밀착을 위해 하단 테두리 제거 */
+    padding: 8px 20px 88px 20px !important; /* 하단 타임라인 탭(72px)과의 여백(8px + 추가여백) 확보 */
     display: block !important;
     overflow-y: auto !important;
     transition: height 0.4s var(--ease-curve);
   }
 
   #sidebar.expanded {
-    height: calc(38vh + 24px) !important;
+    height: 33.3vh !important; /* 디바이스 화면의 정확히 1/3을 차지하도록 확장 */
   }
 
   .sidebar-drag-handle {
@@ -1009,8 +1010,8 @@ body.light-theme .card-action-btn {
   }
 
   .sidebar-header {
-    margin-top: 20px !important;
-    margin-bottom: 40px !important;
+    margin-top: 12px !important;
+    margin-bottom: 32px !important;
   }
 
   .brand-subtitle {
