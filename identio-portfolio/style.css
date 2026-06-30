@@ -958,7 +958,7 @@ body.light-theme .card-action-btn {
   #sidebar::before {
     content: "" !important;
     display: block !important;
-    height: 28px !important; /* 상단 얼라인과 첫 번째 프로젝트 카드 사이의 스크롤 침범을 방지하는 28px 고정 여백 가드 */
+    height: 20px !important; /* 상단 얼라인과 첫 번째 프로젝트 카드 사이의 여백 20px 고정 가드 */
     width: 100% !important;
     flex-shrink: 0 !important;
   }
