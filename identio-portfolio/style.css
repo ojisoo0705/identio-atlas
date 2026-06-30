@@ -968,7 +968,7 @@ body.light-theme .card-action-btn {
     border-radius: 24px 24px 0 0 !important; /* 하단 밀착을 위해 아래쪽 r값 제거 */
     border: 1px solid var(--border-color);
     border-bottom: none !important; /* 바닥 밀착을 위해 하단 테두리 제거 */
-    padding: 16px 20px 88px 20px !important; /* 상단 여백 16px 확보하여 컴포넌트 간격과 조화 유도, 하단 타임라인과의 간격 88px 확보 */
+    padding: 28px 14px 88px 20px !important; /* 상단 여백 28px 확보, 좌측 20px, 우측 14px(6px 스크롤바 보정하여 대칭 20px 확보), 하단 88px */
     display: block !important;
     overflow-y: auto !important;
     transition: height 0.4s var(--ease-curve);
@@ -1007,7 +1007,7 @@ body.light-theme .card-action-btn {
   }
 
   .sidebar-header {
-    margin-top: 22px !important; /* 로고를 상단에서 10px 추가로 내림 */
+    margin-top: 10px !important; /* 패딩 탑이 28px로 늘어남에 따라 12px 줄여 로고의 절대적 상단 여백(38px) 유지 */
     margin-bottom: 32px !important;
   }
 
@@ -1039,6 +1039,7 @@ body.light-theme .card-action-btn {
     display: block !important;
     overflow-y: visible !important;
     flex-grow: 0 !important;
+    padding-right: 0 !important; /* 데스크톱에서 설정한 우측 6px 안전 마진 제거로 모바일 좌우 정렬 보정 */
   }
 
   .sidebar-project-item {
