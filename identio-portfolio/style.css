@@ -475,7 +475,6 @@ body.light-theme .section-title {
 .sidebar-project-item:hover {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(var(--accent-gold-rgb), 0.2);
-  transform: translateX(4px);
 }
 
 .sidebar-project-item.active-item {
