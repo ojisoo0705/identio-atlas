@@ -124,8 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (markerDom) markerDom.classList.add(activeMarkerClass);
       // 모바일과 데스크톱의 지도 초점 위도 오프셋 분기 처리
       // 데스크톱은 기존 +0.15 오프셋으로 카드를 아래로 배치하며,
-      // 모바일은 상단 프로젝트 로고와 하단 고정탭(33.3vh) 사이의 정중앙에 핀과 카드가 오도록 미세 보정값 -0.02 오프셋을 적용
-      const latOffset = window.innerWidth <= 768 ? -0.02 : 0.15;
+      // 모바일은 상단 프로젝트 로고와 하단 고정탭(33.3vh) 사이 공간에서 캡슐 배너가 정확히 상하 1:1 대칭(중앙)이 되도록 +0.05 오프셋 적용
+      const latOffset = window.innerWidth <= 768 ? 0.05 : 0.15;
       const targetCoords = [project.coordinates[0] + latOffset, project.coordinates[1]];
       map.flyTo(targetCoords, 10.5, { duration: 1.5, easeLinearity: 0.2 });
       openCustomPopup(project);
