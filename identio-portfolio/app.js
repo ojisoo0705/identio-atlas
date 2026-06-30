@@ -122,8 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (project.coordinates) {
       const markerDom = document.getElementById(`marker-${project.id}`);
       if (markerDom) markerDom.classList.add(activeMarkerClass);
-      // 13인치 디바이스 등에서 상단 글자와 브랜드 카드가 겹치지 않도록 지도의 중심 위도를 올려 앵커와 카드가 하단에 오게 설정
-      const targetCoords = [project.coordinates[0] + 0.15, project.coordinates[1]];
+      // 모바일과 데스크톱의 지도 초점 위도 오프셋 분기 처리
+      // 데스크톱은 기존 +0.15 오프셋으로 카드를 아래로 배치하며,
+      // 모바일은 하단 고정탭(33.3vh)을 피해 가용 상단 2/3 영역 중앙에 핀과 카드가 오도록 -0.08 오프셋을 사용하여 마커를 위로 올림
+      const latOffset = window.innerWidth <= 768 ? -0.08 : 0.15;
+      const targetCoords = [project.coordinates[0] + latOffset, project.coordinates[1]];
       map.flyTo(targetCoords, 10.5, { duration: 1.5, easeLinearity: 0.2 });
       openCustomPopup(project);
     } else {
