@@ -998,7 +998,7 @@ body.light-theme .card-action-btn {
   }
 
   #sidebar::-webkit-scrollbar-thumb {
-    background: rgba(201, 184, 231, 0.7) !important; /* 70% 투명도로 선명하게 보임 */
+    background: var(--accent-gold) !important; /* 선명한 연보라색 고정 */
     border-radius: 3px !important;
   }
   
@@ -1014,8 +1014,12 @@ body.light-theme .card-action-btn {
   }
 
   .sidebar-header {
-    margin-top: 10px !important; /* 패딩 탑이 28px로 늘어남에 따라 12px 줄여 로고의 절대적 상단 여백(38px) 유지 */
-    margin-bottom: 32px !important;
+    margin-top: 8px !important;
+    margin-bottom: 12px !important; /* 세로 공간 최적화를 위해 마진 대폭 축소 */
+  }
+
+  .logo-image {
+    width: clamp(80px, 15vh, 100px) !important; /* 모바일 반응형 로고 가로 크기 조절 */
   }
 
   .brand-subtitle {
@@ -1027,13 +1031,19 @@ body.light-theme .card-action-btn {
   }
 
   .stats-container {
-    margin-bottom: 16px !important;
-    padding: 0 0 12px 0 !important;
-    gap: 12px !important;
+    margin-bottom: 8px !important; /* 여백 대폭 축소 */
+    padding: 0 0 4px 0 !important;
+    gap: 8px !important;
   }
 
   .stat-num {
-    font-size: 36px !important;
+    font-size: clamp(20px, 3.8vh, 26px) !important; /* 반응형 폰트 축소 */
+  }
+
+  .stat-label {
+    font-size: clamp(8px, 1.2vh, 10px) !important; /* 반응형 라벨 폰트 축소 */
+    letter-spacing: 0px !important;
+    white-space: nowrap !important;
   }
 
   .project-list-section {
